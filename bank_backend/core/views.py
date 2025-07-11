@@ -56,10 +56,14 @@ def login_view(request):
     return render(request, 'login.html')
 
 
-from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def Dashboard(request):
     if not request.user.is_authenticated:
         return redirect('login')
     return render(request, 'dashboard.html', {'user': request.user})
+
+
+def index(request):
+
+    return render(request,'index.html')

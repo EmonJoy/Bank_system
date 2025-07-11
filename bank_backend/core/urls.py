@@ -6,4 +6,5 @@ urlpatterns = [
     #path('welcome/',welcome),
     path('login/', login_view, name='login'),
     path('dashboard/',Dashboard,name='dashboard'),
+    path('',index, name='index' )
 ]
