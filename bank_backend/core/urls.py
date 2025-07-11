@@ -6,5 +6,6 @@ urlpatterns = [
     #path('welcome/',welcome),
     path('login/', login_view, name='login'),
     path('dashboard/',Dashboard,name='dashboard'),
-    path('',index, name='index' )
+    path('',index, name='index' ),
+    path('transaction/', transaction_list, name='transaction')
 ]

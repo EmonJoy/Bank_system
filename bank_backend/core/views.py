@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import BankAccount
+from .models import BankAccount, Transaction
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
-
+from decimal import Decimal 
 def register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -67,3 +67,66 @@ def Dashboard(request):
 def index(request):
 
     return render(request,'index.html')
+
+@login_required
+def transaction_list(request):
+    user = request.user
+
+    if not hasattr(user, 'bankaccount'):
+        messages.error(request, "No account found.")
+        return redirect('index')
+    
+    account = user.bankaccount
+
+    if request.method == "POST":
+        trans_type = request.POST.get('type')
+        amount = request.POST.get('amount')
+        details = request.POST.get('description')
+
+        try:
+            amount = Decimal(amount)
+
+            if amount <= 0:
+                messages.error(request, "Amount must be positive.")
+                return redirect('transaction')
+
+            if trans_type == 'deposit':
+                Transaction.objects.create(
+                    account=account,
+                    transaction_type='DEPOSIT',
+                    amount=amount,
+                    details=details
+                )
+                account.balance += amount
+                account.save()
+                messages.success(request, "Deposit successful.")
+                return redirect('dashboard')
+
+            elif trans_type == 'withdrawal':
+                if amount > account.balance:
+                    messages.error(request, "Insufficient balance.")
+                    return redirect('transaction')
+
+                Transaction.objects.create(
+                    account=account,
+                    transaction_type='WITHDRAW',
+                    amount=amount,
+                    details=details
+                )
+                account.balance -= amount
+                account.save()
+                messages.success(request, "Withdrawal successful.")
+
+            else:
+                messages.error(request, "Invalid transaction type.")
+                return redirect('transaction')
+
+        except:
+            messages.error(request, "Invalid input.")
+            return redirect('transaction')
+
+    transactions = Transaction.objects.filter(account=account).order_by('-timestamp')
+    return render(request, 'transaction.html', {'transactions': transactions})
+
+
+    

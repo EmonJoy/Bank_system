@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Transaction</a>
+                        <a class="nav-link" href="/transaction/">Transaction</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Accounts</a>
@@ -37,7 +37,7 @@
                         <h2 class="card-title mb-4">Welcome, {{ user.username }}!</h2>
                         <p class="lead">This is your dashboard.</p>
                         <p class="lead">Your account number: {{ user.bankaccount.account_number }}</p>
-                        <p class="lead">Current Balance: {{ user.bankaccount.Balance|default:0 }} tk only</p>
+                        <p class="lead">Current Balance: {{ user.bankaccount.balance }} tk only</p>
                     </div>
                 </div>
             </div>
