@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import BankAccount
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -55,5 +56,10 @@ def login_view(request):
     return render(request, 'login.html')
 
 
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='login')
 def Dashboard(request):
-    return render(request,'dashboard.html',{})
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return render(request, 'dashboard.html', {'user': request.user})
