@@ -54,7 +54,7 @@ bank_backend/
 python -m venv env
 source env/bin/activate        # On Windows use: env\Scripts\activate
 ## Configure the database connection:(settings.py)
-'''text
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -65,9 +65,7 @@ DATABASES = {
         'PORT': '<your_db_port>',
     }
 }
-'''
-
-
+```
 
 ### Apply database migrations, Create a superuser (admin), Run the development server..
 
