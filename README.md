@@ -1,4 +1,4 @@
-# Bank_system(Using Djando)
+# Bank_system(Using Django)
 
 A Django-based backend system for managing bank accounts, transactions, and users.  
 This project uses **PostgreSQL** as the database and is designed to be deployed on **Railway.app** for seamless cloud hosting.
