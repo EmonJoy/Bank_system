@@ -14,23 +14,24 @@ This project uses **PostgreSQL** as the database and is designed to be deployed 
 - Integration with PostgreSQL database on Railway
 - Ready for API extension and frontend integration
 
----
-
 ## Project Structure
-├── bank_backend/ # Main Django project settings
-│ ├── settings.py # Database & app configurations
-│ ├── urls.py # Project URL routing
-│ └── wsgi.py
-├── bank/ # Core banking app
-│ ├── migrations/ # Database migration files
-│ ├── models.py # Database models (BankAccount, Transaction, etc.)
-│ ├── views.py # Views and business logic
-│ ├── admin.py # Django admin customizations
-│ └── urls.py # App-level URLs
-├── manage.py # Django CLI entry point
 
+```text
+bank_backend/
+├── bank_backend/           # Main Django project settings
+│   ├── settings.py         # Database & app configurations
+│   ├── urls.py             # Project URL routing
+│   └── wsgi.py             
+├── bank/                   # Core banking app
+│   ├── migrations/         # Database migration files
+│   ├── models.py           # Database models (BankAccount, Transaction, etc.)
+│   ├── views.py            # Views and business logic
+│   ├── admin.py            # Django admin customizations
+│   └── urls.py             # App-level URLs
+├── manage.py               # Django CLI entry point
+└── requirements.txt        # Python dependencies
+```
 
----
 
 ## Setup Instructions
 
