@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import BankAccount, Transaction
 
+admin.site.site_header = "IPPC Bank Admin panel"
+admin.site.site_title = "IPPC Portal"
+
 # ✅ BankAccount admin customization
 class BankAccountAdmin(admin.ModelAdmin):
     list_display = ('user', 'account_number', 'balance')
