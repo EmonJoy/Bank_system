@@ -14,7 +14,8 @@ class BankAccountAdmin(admin.ModelAdmin):
 admin.site.register(BankAccount, BankAccountAdmin)
 
 # ✅ Transaction admin customization
-class TransactionAdmin(admin.ModelAdmin):
+
+class TransactionAdmin(admin.ModelAdmin): 
     list_display = ('account', 'transaction_type', 'amount', 'timestamp')
     search_fields = ('account__account_number', 'transaction_type')
     list_filter = ('transaction_type', 'timestamp')
